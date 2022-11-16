@@ -1,0 +1,10 @@
+.container {
+   display: flex;
+   padding: 10px;
+  justify-content: space-between;
+  margin-left: 0 !important;
+  max-width: 663px !important;
+}
+.email{
+  right: 50px; 
+}
