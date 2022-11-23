@@ -55,17 +55,17 @@ function Cliente() {
                     </Form.Text>
                 </Form.Group>
 
-                <Form.Group className="md-4" controlId="formBasicPassword" style={{marginTop: '4px'}}>
+                <Form.Group className="md-4 senha" controlId="formBasicPassword">
                     <Form.Label>Senha</Form.Label>
                     <Form.Control onChange={alterarSenha} type="password" placeholder="" />
                 </Form.Group>
 
-                <Button onClick={LoginUsuario} variant="primary" type="button" style={{height: '42px', marginTop: "25px" }}>Entrar</Button>
+                <Button onClick={LoginUsuario} className="entrar" variant="primary" type="button" >Entrar</Button>
                 { 
-                sucesso === 'N' ? <Alert className="alert-danger">Faça seu Login</Alert> : null
+                sucesso === 'N' ? <Alert className="alert-danger nlogin">Faça seu Login</Alert> : null
                }
                 { 
-                sucesso === 'S' ? <Alert className="alert-blue">ok</Alert> : null
+                sucesso === 'S' ? <Alert className="alert-blue sok">ok</Alert> : null
                }
             </Form>
         </div>
