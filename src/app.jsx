@@ -40,7 +40,7 @@ function App() {
     return <div>
         <Cliente />
         <Card />
-        <div className='row'>
+        <div className=''>
             <div className='col-4'>
                 <h1>Lista De Videos</h1>
             </div>

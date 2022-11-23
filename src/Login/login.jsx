@@ -47,7 +47,7 @@ function Cliente() {
     return <>
         <div className="d-flex form-container">
             <Form className="container">
-                <Form.Group  as={Row} className="md-4 email mb-3"  controlId="formHorizontalEmail">
+                <Form.Group  as={Row} className="md-4 email mb-2"  controlId="formHorizontalEmail">
                     <Form.Label column sm={2}>Email </Form.Label>
                     <Form.Control onChange={alterarEmail} type="email" placeholder="" />
                     <Form.Text className="text-muted">
