@@ -8,13 +8,12 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 //firebase
-import { app } from "../config/firebase";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import firebase from "../config/firebase";
+import "firebase/auth";
 
 
 
-
-function Cliente() {
+function Cliente(props) {
     const [email, setemail] = useState();
     const [senha, setsenha] = useState();
     const [sucesso, setsucesso] = useState();
@@ -27,21 +26,15 @@ function Cliente() {
     }
 
     function LoginUsuario() {
-        const auth = getAuth(app);
-        signInWithEmailAndPassword(auth, email, senha)
-            .then(function (firebaseUser) {
-            setsucesso('S')
-            })
-            .catch((error) => {
-                setsucesso('N')
-
-                /*app.auth().signInWithEmailAndPassword(email, senha)
-                 .then(function(firebaseUser){
-                    alert('Success');
-                 })
-                 .catch(function(error){
-                    alert('error');*/
-            });
+        
+     firebase.auth().signInWithEmailAndPassword(email, senha)
+     .then(function(firebaseUser){
+        setsucesso('S')
+        setsucesso('N')
+     })
+     .catch(function(error){
+            setsucesso('N')
+     })
     }
 
     return <>
