@@ -15,8 +15,9 @@ function LitasVideos(props) {
   const [cont, setCont] = useState('1')
 
   function abrirvideo() {
-   setModalShow(true);
-  setLick = ({...video.video})
+    setModalShow(true);
+   
+
   }
   // função para inserir o url na variavel link
   function MyVerticallyCenteredModal(props) {
@@ -57,7 +58,7 @@ function LitasVideos(props) {
               <td>{video.id}</td>
               <td>{video.descricao}</td>
               <td>
-                <span onClick={() => abrirvideo()} >
+                <span onClick={() => abrirvideo()} > 
                   {video.video}
                 </span>
               </td>

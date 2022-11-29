@@ -57,22 +57,22 @@ function App(props) {
   };
   function alter() {
     alterShow()
-    firebase.firestore().collection('videos').doc(props.id).get()
-      .then((resultado) => {
-        setVideos(resultado.data().video);
+     firebase.firestore().collection('videos').doc(props.id).get()
+     .then((resultado) =>{
+      setVideos(resultado.data().video);
 
-        db.collection('videos').doc(props.id).update({
-          video: lick,
+       db.collection('videos').doc(props.id).update({
+      video: lick,
 
-        }).then(() => {
-          setAdicionado()
-          handleClose()
-        }).catch((erro) => {
+    }).then(() => {
+      setAdicionado()
+      handleClose()
+    }).catch((erro) => {
 
-        })
-
-      })
-
+     })
+      
+     })
+   
   }
 
   useEffect(() => {
@@ -80,7 +80,7 @@ function App(props) {
     let listavid = [];
     firebase.firestore().collection('videos').get().then(async function (resultado) {
       await resultado.docs.forEach(function (doc) {
-        if (doc.data().descricao.indexOf(busca) >= 0) {
+        if(doc.data().descricao.indexOf(busca) >= 0){
           listavid.push({
             id: doc.id,
             descricao: doc.data().descricao,
@@ -129,16 +129,16 @@ function App(props) {
 
 
             </Form.Group>
-
-            <Form.Label>Descição</Form.Label>
-            <Form.Control onChange={(e) => setDescri(e.target.value)}
-              type="text"
-              placeholder=""
-              autoFocus
-            />
+            
+              <Form.Label>Descição</Form.Label>
+              <Form.Control onChange={(e) => setDescri(e.target.value) }
+                type="text"
+                placeholder=""
+                autoFocus
+              />
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Link do Video</Form.Label>
-              <Form.Control onChange={(e) => setLick(e.target.value)}
+              <Form.Control onChange={(e) => setLick(e.target.value) }
                 type="text"
                 placeholder="link"
                 autoFocus
@@ -170,9 +170,9 @@ function App(props) {
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>informe a Alteração</Form.Label>
-
-              <input onChange={(e) => setLick(e.target.value)}
-
+              
+              <input  onChange={(e) => setLick(e.target.value)  }
+             
                 type="text"
                 placeholder=''
                 autoFocus
@@ -188,9 +188,9 @@ function App(props) {
         </Modal.Footer>
       </Modal>
 
+      
 
-
-
+    
       <LitasVideos arrayvideos={videos} clickDelite={deliteVideo} clickAlterar={alter} />
     </div>
   </div>
