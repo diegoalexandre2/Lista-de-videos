@@ -20,6 +20,7 @@ import Modal from 'react-bootstrap/Modal';
 function App(props) {
 
   const [lick, setLick] = useState('');
+  const [descri, setDescri] = useState('');
   const [show, setShow] = useState('');
   const [alte, setAlte] = useState('');
   const handleClose = () => setShow(false);
@@ -36,10 +37,11 @@ function App(props) {
 
   function CadastrarVideo() {
     db.collection('videos').add({
+      descricao: descri,
       video: lick,
 
     }).then(() => {
-      setAdicionado('S')
+      setAdicionado()
       handleClose()
     }).catch((erro) => {
 
@@ -53,14 +55,24 @@ function App(props) {
     })
 
   };
-  function Alter() {
+  function alter() {
     alterShow()
-     firebase.firestore().collection('videos').doc(props.mattch.params.id).get()
-     .then((resultado) =>{
-      setVideos(resultado.data().video);
-      console.log( setVideos)
-     })
-   
+    firebase.firestore().collection('videos').doc(props.id).get()
+      .then((resultado) => {
+        setVideos(resultado.data().video);
+
+        db.collection('videos').doc(props.id).update({
+          video: lick,
+
+        }).then(() => {
+          setAdicionado()
+          handleClose()
+        }).catch((erro) => {
+
+        })
+
+      })
+
   }
 
   useEffect(() => {
@@ -68,10 +80,13 @@ function App(props) {
     let listavid = [];
     firebase.firestore().collection('videos').get().then(async function (resultado) {
       await resultado.docs.forEach(function (doc) {
-        listavid.push({
-          id: doc.id,
-          video: doc.data().video,
-        })
+        if (doc.data().descricao.indexOf(busca) >= 0) {
+          listavid.push({
+            id: doc.id,
+            descricao: doc.data().descricao,
+            video: doc.data().video,
+          })
+        }
       })
       setVideos(listavid)
     })
@@ -114,6 +129,13 @@ function App(props) {
 
 
             </Form.Group>
+
+            <Form.Label>Descição</Form.Label>
+            <Form.Control onChange={(e) => setDescri(e.target.value)}
+              type="text"
+              placeholder=""
+              autoFocus
+            />
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Link do Video</Form.Label>
               <Form.Control onChange={(e) => setLick(e.target.value)}
@@ -148,10 +170,11 @@ function App(props) {
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>informe a Alteração</Form.Label>
-              
-              <Form.Control  onChange={(e) => setLick(e.target.value)}
+
+              <input onChange={(e) => setLick(e.target.value)}
+
                 type="text"
-                placeholder="link"
+                placeholder=''
                 autoFocus
               />
             </Form.Group>
@@ -159,16 +182,16 @@ function App(props) {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={Alter}>
+          <Button variant="primary" onClick={alter}>
             Salvar
           </Button>
         </Modal.Footer>
       </Modal>
 
-      
 
-    
-      <LitasVideos arrayvideos={videos} clickDelite={deliteVideo} clickAlterar={Alter} />
+
+
+      <LitasVideos arrayvideos={videos} clickDelite={deliteVideo} clickAlterar={alter} />
     </div>
   </div>
 

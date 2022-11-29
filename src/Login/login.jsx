@@ -30,7 +30,7 @@ function Cliente(props) {
      firebase.auth().signInWithEmailAndPassword(email, senha)
      .then(function(firebaseUser){
         setsucesso('S')
-        setsucesso('N')
+        
      })
      .catch(function(error){
             setsucesso('N')
