@@ -12,12 +12,14 @@ import Modal from 'react-bootstrap/Modal';
 function LitasVideos(props) {
   const [modalShow, setModalShow] = React.useState(false);
   const [lick, setLick] = useState('');
-  const [cont, setCont] = useState('1')
+  const [cont, setCont] = useState(0)
 
   function abrirvideo() {
+    const urlParams = new URLSearchParams(window.location.search);
     setModalShow(true);
+    setCont((cont) =>  cont + 1 );
+   setLick(window.location.search);
    
-
   }
   // função para inserir o url na variavel link
   function MyVerticallyCenteredModal(props) {
@@ -62,7 +64,7 @@ function LitasVideos(props) {
                   {video.video}
                 </span>
               </td>
-              <td>{cont }</td>
+              <td>{cont}</td>
               <td>
                 <Button onClick={() => props.clickAlterar(video.id)} className='btn-edd'>Editar</Button>
                 <Button onClick={() => props.clickDelite(video.id)} variant="danger" >Escluir</Button>
