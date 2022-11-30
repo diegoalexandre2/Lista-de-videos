@@ -80,7 +80,7 @@ function App(props) {
     let listavid = [];
     firebase.firestore().collection('videos').get().then(async function(resultado) {
       await resultado.docs.forEach(function(doc){
-       if (doc.data().video.indexOf(busca) >= 0) {
+       if (doc.data().descricao.indexOf(busca) >= 0) {
          listavid.push({
            id: doc.id,
            descricao: doc.data().descricao,
