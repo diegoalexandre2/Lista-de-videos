@@ -41,7 +41,7 @@ function App(props) {
       descricao: descri,
       video: lick,
       views: 0
-
+      
     }).then(() => {
       setAdicionado()
       handleClose()
